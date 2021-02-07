@@ -6,11 +6,20 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all' %>
+    <%= stylesheet_pack_tag 'application', media: 'all' %>
     <%= javascript_pack_tag 'application' %>
   </head>
 
   <body>
-    <%= yield %>
+    <div class="container-fluid p-0">
+      <div class="d-flex">
+        <%= render 'layouts/sidebar' %>
+        <%= turbo_frame_tag "main", style: "padding-left: 290px;" do %>
+          <div class="ps-4 pt-3">
+            <%= yield %>
+          </div>
+        <% end %>
+      </div>
+    </div>
   </body>
 </html>

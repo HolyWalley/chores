@@ -1,0 +1,42 @@
+= yield :form_title
+
+= simple_form_for habit do |f|
+  .row.g-3
+    - if habit.errors.any?
+      .card.text-white.bg-danger.mb-3
+        .card-header
+          h2= "#{ pluralize(habit.errors.count, "error") } prohibited this habit from being saved:"
+        .card-body
+          ul
+            - habit.errors.each do |error|
+              li= error.full_message
+
+    = f.input :category_id, collection: Category.all.map { |cat| [cat.name, cat.id] }, include_blank: true
+    = f.input :name
+    = f.input :goal
+    = f.input :time_period, collection: Habit.time_periods.map { |k, _| [k.titleize, k] }, include_blank: false
+    = f.input :start_date, html5: true, input_html: { style: "margin: 0 !important;" }
+    = f.label "When to Log"
+    = f.simple_fields_for :repeat, habit.repeat do |rf|
+      div data-controller="repeat" data-repeat-d-none-class="d-none" data-repeat-period-value=rf.object.period
+        = rf.input :period, label: false do
+          .d-flex.flex-row.justify-content-start.align-items-start
+            = rf.input :each, within: 1..30, label: false, wrapper_html: { class: "me-3", data: { "repeat-target": "each" } }
+            = rf.input :period, collection: Habit::Repeat.new.period_values.map { |k, _| [k.to_s.titleize, k] }, label: false, include_blank: false, wrapper_html: { class: "w-100", data: { "repeat-target": "period", action: "change->repeat#handlePeriodChange" } }
+        .mt-3 data-repeat-target="weekdays"
+          = render WeekdaysComponent.new(form: rf)
+
+  hr.my-4
+
+  .row
+    h4.mb-3 Reminders
+    = tag.div data: { controller: "reminders", "reminders-template-value": render(partial: 'reminder_fields', locals: { f: f, reminder: Habit.build_reminder }) } do
+      div data-reminders-target="reminders"
+        - habit.reminders.each do |reminder|
+          = render partial: "reminder_fields", locals: { f: f, reminder: reminder }
+      .links
+        = link_to("Add reminder", "#", data: { action: "reminders#handleAddReminder" }, class: "btn btn-success")
+  hr.my-4
+  = f.input :is_bad
+  hr.my-4
+  = f.button :submit, class: "btn-primary w-100"

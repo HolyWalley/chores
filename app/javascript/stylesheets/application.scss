@@ -1,0 +1,21 @@
+@import "~bootstrap/scss/bootstrap";
+
+.sidebar .nav-link {
+  color: #333;
+  display: flex;
+  align-items: center;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+
+  .feather {
+    color: #646464;
+    font-size: 20px;
+    margin-right: 12px;
+  }
+
+  &:hover {
+    .feather {
+      color: #333;
+    }
+  }
+}

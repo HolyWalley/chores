@@ -1,0 +1,17 @@
+div data-controller="weekdays" data-weekdays-weekdays-value=@form.object.weekdays
+  = @form.input :weekdays, as: :hidden, input_html: { data: { "weekdays-target": "input" } }
+  .input-group.mb-3
+    = check_box_tag "monday", "Mon", false, class: "btn-check", id: "btn-check-monday", autocomplete: false, data: { "weekdays-target": "checkbox", action: "change->weekdays#handleChange" }
+    label.btn.btn-outline-success for="btn-check-monday" style="border-top-left-radius: 0.25rem; border-bottom-left-radius: 0.25rem;" Monday
+    = check_box_tag "tuesday", "Tue", false, class: "btn-check", id: "btn-check-tuesday", autocomplete: false, data: { "weekdays-target": "checkbox", action: "change->weekdays#handleChange" }
+    label.btn.btn-outline-success for="btn-check-tuesday" Tuesday
+    = check_box_tag "wednesday", "Wed", false, class: "btn-check", id: "btn-check-wednesday", autocomplete: false, data: { "weekdays-target": "checkbox", action: "change->weekdays#handleChange" }
+    label.btn.btn-outline-success for="btn-check-wednesday" Wednesday
+    = check_box_tag "thursday", "Thu", false, class: "btn-check", id: "btn-check-thursday", autocomplete: false, data: { "weekdays-target": "checkbox", action: "change->weekdays#handleChange" }
+    label.btn.btn-outline-success for="btn-check-thursday" Thursday
+    = check_box_tag "friday", "Fri", false, class: "btn-check", id: "btn-check-friday", autocomplete: false, data: { "weekdays-target": "checkbox", action: "change->weekdays#handleChange" }
+    label.btn.btn-outline-success for="btn-check-friday" Friday
+    = check_box_tag "saturday", "Sat", false, class: "btn-check", id: "btn-check-saturday", autocomplete: false, data: { "weekdays-target": "checkbox", action: "change->weekdays#handleChange" }
+    label.btn.btn-outline-success for="btn-check-saturday" Saturday
+    = check_box_tag "sunday", "Sun", false, class: "btn-check", id: "btn-check-sunday", autocomplete: false, data: { "weekdays-target": "checkbox", action: "change->weekdays#handleChange" }
+    label.btn.btn-outline-success for="btn-check-sunday" Sunday

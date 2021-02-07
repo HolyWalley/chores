@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 2021_02_02_201340) do
     t.integer "goal"
     t.integer "time_period", limit: 2
     t.date "start_date", null: false
-    t.jsonb "reminders", default: {}, null: false
+    t.jsonb "reminders", default: [], null: false
     t.boolean "is_bad", null: false
     t.jsonb "repeat", default: {}, null: false
     t.datetime "created_at", precision: 6, null: false

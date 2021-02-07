@@ -1,0 +1,12 @@
+.py-5.text-center
+  h1 Editing Habit
+  p.lead abca
+
+.row.g-3
+  .col-md-5.col-lg-4.order-md-last
+    h4 Popular Templates
+  .col-md-7.col-lg-8
+    - content_for :form_title
+      h4.mb-3 ABC
+
+    = render 'form', habit: @habit

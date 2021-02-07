@@ -1,0 +1,4 @@
+= f.simple_fields_for :'reminders[]', reminder do |rf|
+  = rf.input :remind_at, wrapper_html: { class: "form-inline mb-3", data: { "reminders-target": "reminder" } }, label: false do
+    = rf.time_field :remind_at, class: "form-control time required"
+    = link_to "Remove", "#", data: { action: "reminders#handleRemoveReminder" }, class: "ms-3 btn btn-danger"

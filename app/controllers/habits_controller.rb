@@ -3,7 +3,8 @@ class HabitsController < ApplicationController
 
   # GET /habits or /habits.json
   def index
-    @habits = Habit.all
+    @habits = Habit.all.by_category_id(params[:category_id])
+                       .by_date(params[:date])
   end
 
   # GET /habits/1 or /habits/1.json
@@ -12,7 +13,12 @@ class HabitsController < ApplicationController
 
   # GET /habits/new
   def new
-    @habit = Habit.new
+    @habit = Habit.new(
+      goal: 1,
+      start_date: Time.current,
+      repeat: Habit.build_repeat,
+      reminders: [Habit.build_reminder]
+    )
   end
 
   # GET /habits/1/edit
@@ -64,6 +70,6 @@ class HabitsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def habit_params
-      params.require(:habit).permit(:category_id, :name, :goal, :time_period, :start_date, :reminders, :is_bad, :repeat)
+      params.require(:habit).permit(:category_id, :name, :goal, :time_period, :start_date, :is_bad, repeat: %i[each period weekdays], reminders: %i[remind_at])
     end
 end
