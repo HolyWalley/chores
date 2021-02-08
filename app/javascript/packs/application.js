@@ -6,7 +6,7 @@ import bootstrap from 'bootstrap'
 import "../stylesheets/application.scss"
 import "animate.css"
 
-import "@fortawesome/fontawesome-free/js/all"
+import "@fortawesome/fontawesome-free/css/all"
 
 import { Turbo } from "@hotwired/turbo-rails"
 
