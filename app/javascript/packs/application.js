@@ -26,3 +26,20 @@ document.addEventListener('turbo:before-stream-render', (event) => {
     event.target.performAction()
   })
 });
+
+document.addEventListener("turbo:load", () => {
+  document.getElementById("sidebarMenu").addEventListener('show.bs.collapse', (e) => {
+    let menu = e.target;
+
+    menu.classList.add("animate__bounceInLeft");
+
+    setTimeout(() => menu.classList.remove("animate__bounceInLeft"), 1000);
+  })
+
+  document.getElementById("sidebarMenu").addEventListener('hide.bs.collapse', (e) => {
+    let menu = e.target;
+
+    menu.classList.add("animate__bounceOutLeft");
+    setTimeout(() => menu.classList.remove("animate__bounceOutLeft"), 1000);
+  });
+});
