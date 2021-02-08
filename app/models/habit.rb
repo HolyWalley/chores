@@ -10,12 +10,13 @@ class Habit < ApplicationRecord
     validates :remind_at, presence: true
   end
 
+  # it doesn't save it to the database when incoming data is equal to default values
   class Repeat
     include StoreModel::Model
 
-    enum :period, %i[weekdays days weeks months years], default: :weekdays
-    attribute :each, :integer, default: 1
-    attribute :weekdays, :string, default: "MonTueWedThuFriSatSun"
+    enum :period, %i[weekdays days weeks]
+    attribute :each, :integer
+    attribute :weekdays, :string
 
     validates :period, presence: true
     validates :each, presence: true, if: -> { period.to_sym != :weekdays }
@@ -26,6 +27,8 @@ class Habit < ApplicationRecord
   attribute :repeat, Repeat.to_type
 
   belongs_to :category
+
+  has_many :logs, dependent: :destroy
 
   enum time_period: %i[day week month]
 
@@ -45,7 +48,7 @@ class Habit < ApplicationRecord
       base.where("repeat ->> 'period' = ?", Repeat.new.period_values[:weeks].to_s)
       .where("EXTRACT(days from (?::timestamp - start_date))::integer / 7.0 % (repeat ->> 'each')::integer = 0", date)
     )
-  }
+  } # TODO: add specs
 
   validates :reminders, :repeat, store_model: true
 
@@ -56,7 +59,7 @@ class Habit < ApplicationRecord
   end
 
   def self.build_repeat
-    Repeat.new
+    Repeat.new(each: 1, period: :weekdays, weekdays: "MonTueWedThuFriSatSun")
   end
 
   def build_reminder
@@ -65,5 +68,11 @@ class Habit < ApplicationRecord
 
   def build_repeat
     self.class.build_repeat
+  end
+
+  def progress
+    logs.where(
+      created_at: Time.current.send("beginning_of_#{ time_period }")..Time.current
+    ).count
   end
 end

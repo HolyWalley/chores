@@ -1,0 +1,7 @@
+p
+  strong Category:
+  = @habit.category_id
+
+= link_to 'Edit', edit_habit_path(@habit)
+| |
+= link_to 'Back', habits_path

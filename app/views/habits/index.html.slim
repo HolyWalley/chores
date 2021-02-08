@@ -1,0 +1,6 @@
+.mb-4.px-4
+  span.text-uppercase.text-muted= Date.today.strftime("%A, %d %B")
+  h3 All habits
+
+= turbo_frame_tag "habits", class: "col-sm-12"
+  - render @habits

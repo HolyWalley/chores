@@ -1,4 +1,4 @@
-nav.position-fixed.top-0.d-md-block.bg-light.sidebar.collapse.vh-100 style="width: 290px;"
+nav.position-fixed.top-0.d-md-block.bg-light.sidebar.collapse.vh-100.overflow-scroll style="width: 290px;"
   .position-sticky
     .p-3 role="button"
       .d-flex.flex-row
@@ -12,7 +12,7 @@ nav.position-fixed.top-0.d-md-block.bg-light.sidebar.collapse.vh-100 style="widt
           i.fas.fa-chevron-down
     ul.nav.flex-column
       li.nav-item
-        = link_to habits_path(date: Date.today), class: "nav-link active", aria: { current: "page" } do
+        = link_to today_habits_path, class: "nav-link active", aria: { current: "page" } do
           i.feather.fas.fa-calendar-day
           | Today
       li.nav-item
@@ -26,3 +26,7 @@ nav.position-fixed.top-0.d-md-block.bg-light.sidebar.collapse.vh-100 style="widt
 
     = turbo_frame_tag "categories", class: "nav flex-column" do
       = render Category.all
+
+    h6.sidebar-heading.d-flex.justify-content-between.align-items-center.px-3.mt-4.mb-1.text-muted
+      small.text-uppercase Achievements
+
