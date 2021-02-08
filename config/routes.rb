@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
-  root to: 'habits#index'
+  root to: 'habits#today'
 
   resources :habits do
-    get "/today", on: :collection, action: :today
+    get :today, on: :collection, action: :today
 
     resources :logs, only: %i[create destroy], module: :habits
   end

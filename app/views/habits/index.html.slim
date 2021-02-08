@@ -7,3 +7,6 @@
 
 = turbo_frame_tag "habits", class: "col-sm-12"
   - render @habits
+
+= link_to new_habit_path(category_id: params[:category_id]), class: "new-habit-button d-flex align-items-center justify-content-center position-absolute bottom-0 end-0 rounded-circle bg-primary text-white me-3 mb-3" do
+  i.fas.fa-plus

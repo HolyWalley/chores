@@ -23,7 +23,8 @@ class HabitsController < ApplicationController
       goal: 1,
       start_date: Time.current,
       repeat: Habit.build_repeat,
-      reminders: [Habit.build_reminder]
+      reminders: [Habit.build_reminder],
+      category_id: params[:category_id]
     )
   end
 
