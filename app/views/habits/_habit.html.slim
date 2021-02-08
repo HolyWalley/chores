@@ -1,4 +1,4 @@
-= turbo_frame_tag dom_id(habit), class: "habit-item px-4 py-2 animate__animated animate__fadeIn", data: { controller: "habit-log" }
+= turbo_frame_tag dom_id(habit), class: "habit-item px-4 py-2", data: { controller: "habit-log" }
   .habit-item__check-in-circle
     - if habit.progress >= habit.goal
       = button_to habit_log_path(habit_id: habit.id, id: habit.logs.order(:created_at).last.id), method: :delete, class: "border-0 bg-transparent", style: "outline: none", data: { confirm: "Are you sure?" }

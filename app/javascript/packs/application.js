@@ -15,18 +15,6 @@ window.Turbo = Turbo
 
 import "controllers"
 
-document.addEventListener('turbo:before-stream-render', (event) => {
-  event.preventDefault()
-
-  let oldElement = document.getElementById(event.target.target)
-
-  oldElement.classList.add('animate__fadeOut', 'animate__animated')
-
-  oldElement.addEventListener('animationend', function() {
-    event.target.performAction()
-  })
-});
-
 document.addEventListener("turbo:load", () => {
   document.getElementById("sidebarMenu").addEventListener('show.bs.collapse', (e) => {
     let menu = e.target;
