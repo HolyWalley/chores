@@ -3,8 +3,14 @@ class HabitsController < ApplicationController
 
   # GET /habits or /habits.json
   def index
-    @habits = Habit.all.by_category_id(params[:category_id])
-                       .by_date(params[:date])
+    @habits = Habit.by_category_id(params[:category_id])
+                   .by_date(params[:date])
+  end
+
+  def today
+    @habits = Habit.by_date(Date.today.to_s)
+
+    render :index
   end
 
   # GET /habits/1 or /habits/1.json

@@ -2,10 +2,7 @@ Rails.application.routes.draw do
   root to: 'habits#index'
 
   resources :habits do
-    get "/today", on: :collection, to: proc { |env|
-      env["action_dispatch.request.path_parameters"]["date"] = Date.today.to_s
-      HabitsController.action("index").call(env)
-    }
+    get "/today", on: :collection, action: :today
 
     resources :logs, only: %i[create destroy], module: :habits
   end
