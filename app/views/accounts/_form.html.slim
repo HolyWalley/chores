@@ -3,6 +3,7 @@
   h1.h3.mb-3.fw-normal Please sign up
   = f.input :email, label: false, placeholder: 'Email', wrapper_html: { class: 'mb-3' }
   = f.input :password, label: false, placeholder: 'Password', wrapper_html: { class: 'mb-3' }
+  = f.input :password_confirmation, label: false, placeholder: "Confirmation", wrapper_html: { class: 'mb-3' }
   = f.simple_fields_for :profile do |pf|
     = pf.input :username, label: false, placeholder: 'Username', wrapper_html: { class: 'mb-3' }
   = f.button :submit, class: 'btn-primary btn-lg'

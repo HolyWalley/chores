@@ -5,5 +5,7 @@ class Profile < ApplicationRecord
 
   has_many :habits
 
+  accepts_nested_attributes_for :account
+
   validates :username, presence: true
 end

@@ -5,6 +5,8 @@ class ApplicationController < ActionController::Base
 
   before_action :authorize
 
+  helper_method :current_profile, :current_account
+
   def current_account
     @current_account ||= Account.find(session[:account_id]) if session[:account_id]
   end

@@ -11,7 +11,7 @@ nav#sidebarMenu.animate__animated.position-fixed.top-0.d-md-block.bg-light.sideb
         i.fas.fa-chevron-down
       ul.dropdown-menu data-profile-target="dropdown"
         li
-          a.dropdown-item
+          = link_to profile_path, class: "dropdown-item" do
             .dropdown-item__icon
               i.far.fa-user
             .dropdown-item__text

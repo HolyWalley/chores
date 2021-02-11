@@ -1,0 +1,13 @@
+.mb-4.px-4
+  h3 Profile
+
+  = turbo_frame_tag dom_id(current_profile) do
+    = simple_form_for current_profile do |f|
+      = f.input :username, wrapper_html: { class: 'mb-3' }
+
+      = f.simple_fields_for :account, current_profile.account do |af|
+        = af.input :email, wrapper_html: { class: 'mb-3' }
+        = af.input :password, wrapper_html: { class: 'mb-3' }
+        = af.input :password_confirmation, wrapper_html: { class: 'mb-3' }
+
+      = f.button :submit, class: "btn-primary"
