@@ -6,6 +6,16 @@ Rails.application.routes.draw do
 
     resources :logs, only: %i[create destroy], module: :habits
   end
-  resources :categories
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
+  # resources :categories, only: :index
+
+  resource :account
+  resource :profile
+
+  get  '/signin' => 'sessions#new'
+  post '/signin' => 'sessions#create'
+  delete '/signout' => 'sessions#destroy'
+
+  get  '/signup'  => 'accounts#new'
+  post '/account' => 'accounts#create'
 end

@@ -50,6 +50,49 @@
   padding-left: 290px;
 }
 
+.form-auth {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: auto;
+}
+
+.form-auth .form-control {
+  position: relative;
+  box-sizing: border-box;
+  height: auto;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.profile {
+  .dropdown-menu {
+    padding: 0;
+    width: 290px;
+
+    .dropdown-item {
+      padding: 15px;
+      display: flex;
+      align-items: center;
+
+      &__icon {
+        font-size: 18px;
+        width: 30px;
+        text-align: center;
+        margin-right: 5px;
+      }
+
+      &__text {
+        flex-grow: 1;
+      }
+    }
+
+    .dropdown-divider {
+      margin: 0;
+    }
+  }
+}
+
 @media only screen and (max-width: 767px) {
   .main-content {
     padding-left: 0;

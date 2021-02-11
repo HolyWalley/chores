@@ -3,12 +3,13 @@ class HabitsController < ApplicationController
 
   # GET /habits or /habits.json
   def index
-    @habits = Habit.by_category_id(params[:category_id])
-                   .by_date(params[:date])
+    @habits = current_profile.habits
+                             .by_category_id(params[:category_id])
+                             .by_date(params[:date])
   end
 
   def today
-    @habits = Habit.by_date(Date.today.to_s)
+    @habits = current_profile.habits.by_date(Date.today.to_s)
 
     render :index
   end
@@ -19,7 +20,7 @@ class HabitsController < ApplicationController
 
   # GET /habits/new
   def new
-    @habit = Habit.new(
+    @habit = current_profile.habits.new(
       goal: 1,
       start_date: Time.current,
       repeat: Habit.build_repeat,
@@ -34,7 +35,7 @@ class HabitsController < ApplicationController
 
   # POST /habits or /habits.json
   def create
-    @habit = Habit.new(habit_params)
+    @habit = current_profile.habits.new(habit_params)
 
     respond_to do |format|
       if @habit.save
@@ -72,7 +73,7 @@ class HabitsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_habit
-      @habit = Habit.find(params[:id])
+      @habit = current_profile.habits.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.

@@ -1,0 +1,13 @@
+doctype html
+html style="height: 100%;"
+  head
+    meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
+    title Chores
+    meta content="width=device-width,initial-scale=1" name="viewport" /
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_pack_tag 'application', media: 'all'
+    = javascript_pack_tag 'application'
+  body.text-center style="height: 100%; display: flex; align-items: center; padding-top: 40px; padding-bottom: 40px; background-color: #f5f5f5;"
+    main.form-auth
+      = yield

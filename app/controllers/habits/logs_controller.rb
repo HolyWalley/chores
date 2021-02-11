@@ -29,7 +29,7 @@ module Habits
     end
 
     def habit
-      @habit ||= Habit.find(params[:habit_id])
+      @habit ||= current_profile.habits.find(params[:habit_id])
     end
   end
 end

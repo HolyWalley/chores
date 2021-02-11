@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_08_152308) do
+ActiveRecord::Schema.define(version: 2021_02_10_205017) do
 
   # These are extensions that must be enabled in order to support this database
+  enable_extension "citext"
   enable_extension "plpgsql"
+
+  create_table "accounts", force: :cascade do |t|
+    t.citext "email", null: false
+    t.string "password_digest", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["email"], name: "index_accounts_on_email"
+  end
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -39,9 +48,21 @@ ActiveRecord::Schema.define(version: 2021_02_08_152308) do
     t.jsonb "repeat", default: {}, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "profile_id"
     t.index ["category_id"], name: "index_habits_on_category_id"
+    t.index ["profile_id"], name: "index_habits_on_profile_id"
+  end
+
+  create_table "profiles", force: :cascade do |t|
+    t.bigint "account_id"
+    t.string "username", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["account_id"], name: "index_profiles_on_account_id"
   end
 
   add_foreign_key "habit_logs", "habits"
   add_foreign_key "habits", "categories"
+  add_foreign_key "habits", "profiles"
+  add_foreign_key "profiles", "accounts"
 end

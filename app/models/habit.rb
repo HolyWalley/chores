@@ -27,6 +27,7 @@ class Habit < ApplicationRecord
   attribute :repeat, Repeat.to_type
 
   belongs_to :category
+  belongs_to :profile
 
   has_many :logs, dependent: :destroy
 
