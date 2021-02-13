@@ -12,6 +12,9 @@
 
   <body>
     <div class="container-fluid p-0">
+      <%= turbo_frame_tag "toasts", class: "toasts-container" do %>
+      <% end %>
+
       <div class="d-flex">
         <%= render 'layouts/sidebar' %>
         <div class="main-content w-100">
