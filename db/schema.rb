@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_10_205017) do
+ActiveRecord::Schema.define(version: 2021_02_12_205947) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
@@ -34,6 +34,8 @@ ActiveRecord::Schema.define(version: 2021_02_10_205017) do
     t.bigint "habit_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.datetime "logged_at", null: false
+    t.date "logged_for", null: false
     t.index ["habit_id"], name: "index_habit_logs_on_habit_id"
   end
 

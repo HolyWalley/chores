@@ -1,0 +1,22 @@
+= turbo_frame_tag dom_id(@habit), class: "habit-item px-4 py-2", data: { controller: "habit-log" }
+  .habit-item__check-in-circle
+    - if goal_reached?
+      = button_to habit_log_path(habit_id: @habit.id, id: log_to_delete.id), method: :delete, class: "border-0 bg-transparent outline-none", data: { confirm: "Are you sure?" }
+        i.far.fa-check-circle.text-success
+    - else
+      = button_to habit_logs_path(habit_id: @habit.id, logged_for: @date), class: "border-0 bg-transparent outline-none" do
+        i.far.fa-circle
+  = link_to habit_path(@habit.id), class: "text-reset text-decoration-none w-100", data: { "turbo-frame": "_top" } do
+    .d-flex.flex-column
+      span
+        = @habit.name
+      span
+        - if goal_reached?
+          small.text-success= "#{ progress } "
+        - else
+          small= "#{ progress } "
+
+        - if progress.positive?
+          small.text-success= out_of_text
+        - else
+          small= out_of_text

@@ -1,2 +1,7 @@
-= turbo_stream.replace dom_id(@log.habit) do
-  = render partial: "/habits/habit", locals: { habit: @log.habit }
+- if @log.valid? && @log.persisted?
+  = turbo_stream.replace dom_id(@log.habit) do
+    = render HabitComponent.new(habit: @log.habit, date: @log.logged_for)
+- else
+  = turbo_stream.append "toasts" do
+    - @log.errors.full_messages.each do |error_message|
+      = render ToastComponent.new(error_message: error_message, type: :error)

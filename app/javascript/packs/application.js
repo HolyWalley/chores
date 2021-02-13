@@ -2,7 +2,7 @@ import Rails from "@rails/ujs"
 import "channels"
 import "@oddcamp/cocoon-vanilla-js";
 
-import bootstrap from 'bootstrap'
+// import bootstrap from 'bootstrap'
 import "../stylesheets/application.scss"
 import "animate.css"
 

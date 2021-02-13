@@ -70,10 +70,4 @@ class Habit < ApplicationRecord
   def build_repeat
     self.class.build_repeat
   end
-
-  def progress
-    logs.where(
-      created_at: Time.current.send("beginning_of_#{ time_period }")..Time.current
-    ).count
-  end
 end

@@ -3,12 +3,13 @@
 module Habits
   class LogsController < ApplicationController
     def create
-      @log = habit.logs.new
+      @log = habit.logs.new(**habit_log_params, logged_at: Time.current)
 
       respond_to do |format|
         if @log.save
           format.turbo_stream
         else
+          format.turbo_stream
         end
       end
     end
@@ -23,6 +24,10 @@ module Habits
     end
 
     private
+
+    def habit_log_params
+      params.permit(:logged_for)
+    end
 
     def log
       @log ||= habit.logs.find(params[:id])

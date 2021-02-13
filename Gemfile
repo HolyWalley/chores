@@ -30,6 +30,9 @@ gem "view_component", require: "view_component/engine"
 
 gem 'dry-struct', '~> 1.4'
 gem 'dry-validation', '~> 1.6.0'
+gem 'dry-initializer'
+
+gem 'date_validator', github: "codegram/date_validator"
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false

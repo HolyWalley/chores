@@ -1,12 +1,16 @@
 .mb-4.px-4
-  span.text-uppercase.text-muted= Date.today.strftime("%A, %d %B")
+  span.text-uppercase.text-muted= ::Types::ChoresDate[params[:date]].strftime("%A, %d %B")
   - if params[:action] == "today"
     h3 Today
   - else
-    h3 All habits
+    h3
+      | All habits
+      span.float-end.date role="button" data-controller="calendar"
+        i.far.fa-calendar-alt
 
 = turbo_frame_tag "habits", class: "col-sm-12"
-  - render @habits
+  - @habits.map do |habit|
+    = render HabitComponent.new(habit: habit, date: params[:date])
 
 = link_to new_habit_path(category_id: params[:category_id]), class: "new-habit-button d-flex align-items-center justify-content-center position-absolute bottom-0 end-0 rounded-circle bg-primary text-white me-3 mb-3" do
   i.fas.fa-plus

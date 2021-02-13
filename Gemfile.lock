@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/codegram/date_validator.git
+  revision: a9a46375c88b966f689ed5b747346f599ce051e4
+  specs:
+    date_validator (0.10.0)
+      activemodel (>= 3)
+      activesupport (>= 3)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -110,7 +118,7 @@ GEM
     ffi (1.14.2)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
-    i18n (1.8.8)
+    i18n (1.8.9)
       concurrent-ruby (~> 1.0)
     ice_nine (0.11.2)
     jbuilder (2.11.2)
@@ -227,6 +235,8 @@ DEPENDENCIES
   bcrypt (~> 3.1.7)
   bootsnap (>= 1.4.4)
   byebug
+  date_validator!
+  dry-initializer
   dry-struct (~> 1.4)
   dry-validation (~> 1.6.0)
   jbuilder (~> 2.7)
