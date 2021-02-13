@@ -1,42 +1,36 @@
-nav#sidebarMenu.animate__animated.position-fixed.top-0.d-md-block.bg-light.sidebar.collapse.vh-100 style="width: 290px; z-index: 3;"
-  .profile.d-flex.flex-row.p-3 data-controller="profile"
-    div.rounded
-      img.rounded width="42" src="https://cdn4.iconfinder.com/data/icons/avatars-xmas-giveaway/128/batman_hero_avatar_comics-512.png"
-    .d-flex.flex-column.ms-3
-      span.fw-bolder.fs-6=@current_account.profile.username
-      span.fw-light style="font-size: .85rem;" Free Membership
-    .flex-fill
-    div.d-flex.align-items-center.justify-content-center
-      i.fas.fa-chevron-down
-    ul.dropdown-menu data-profile-target="dropdown"
-      li
-        = link_to profile_path, class: "dropdown-item" do
-          .dropdown-item__icon
-            i.far.fa-user
-          .dropdown-item__text
-            | Profile
-      li
-        a.dropdown-item
-          .dropdown-item__icon
-            i.fas.fa-cogs
-          .dropdown-item__text
-            | Settings
-      li
-        hr.dropdown-divider
-      li
-        = link_to :signout, class: "dropdown-item", method: :delete do
-          .dropdown-item__icon
-            i.fas.fa-sign-out-alt
-          .dropdown-item__text
-            | Sign out
-  div.overflow-scroll.h-100 style="-webkit-overflow-scrolling: touch;"
+nav#sidebarMenu.animate__animated.position-fixed.top-0.d-md-block.bg-light.sidebar.collapse.vh-100 style="width: 290px; z-index: 3;" data-controller="sidebar" data-sidebar-hiding-class="animate__fadeOut" data-sidebar-showing-class="animate__slideInLeft"
+  .profile.py-3 data-action="click->sidebar#handleMenuToggle"
+    .d-flex.flex-row.px-3
+      .rounded
+        img.rounded width="42" src="https://cdn4.iconfinder.com/data/icons/avatars-xmas-giveaway/128/batman_hero_avatar_comics-512.png"
+      .d-flex.flex-column.ms-3
+        span.fw-bolder.fs-6=@current_account.profile.username
+        span.fw-light style="font-size: .85rem;" Free Membership
+      .flex-fill
+      div.d-flex.align-items-center.justify-content-center
+        i.fas.fa-chevron-down
+    ul.animate__fadeOut.d-none.animate__animated.nav.flex-column.pt-3 data-sidebar-target="profile" style="position: absolute;"
+      li.nav-item
+        = link_to profile_path, class: "nav-link" do
+          i.feather.fa.fa-user
+          | Profile
+      li.nav-item
+        = link_to '#', class: "nav-link" do
+          i.feather.fa.fa-cogs
+          | Settings
+      li.nav-item
+        = link_to :signout, class: "nav-link", method: :delete do
+          i.feather.fas.fa-sign-out-alt
+          | Sign out
+
+  .animate__animated.overflow-scroll.h-100 style="-webkit-overflow-scrolling: touch;" data-sidebar-target="menu"
     ul.nav.flex-column
       li.nav-item
-        = link_to today_habits_path, class: "nav-link active", aria: { current: "page" } do
+        = link_to today_habits_path, class: "nav-link" do
           i.feather.fas.fa-calendar-day
           | Today
       li.nav-item
-        = link_to habits_path, class: "nav-link active", aria: { current: "page" } do
+        = link_to habits_path, class: "nav-link" do
           i.feather.fas.fa-archive
           | All habits
     h6.sidebar-heading.d-flex.justify-content-between.align-items-center.px-3.mt-4.mb-1.text-muted

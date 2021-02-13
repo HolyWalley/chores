@@ -1,4 +1,4 @@
 li.nav-item
-  = link_to habits_path(category_id: category.id), class: "nav-link active", aria: { current: "page" }, data: { "turbo-frame": "_top" } do
+  = link_to habits_path(category_id: category.id), class: "nav-link", data: { "turbo-frame": "_top" } do
     i.feather.fas.fa-folder
     = category.name
