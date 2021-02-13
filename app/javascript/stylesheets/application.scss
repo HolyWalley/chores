@@ -1,6 +1,12 @@
 @import "~bootstrap/scss/bootstrap";
 @import "pickmeup/css/pickmeup";
 
+nav.sidebar {
+  transform: translateY(70px);
+  top: -70px !important;
+  padding-bottom: 70px;
+}
+
 .sidebar .nav-link {
   color: #333;
   display: flex;
@@ -67,6 +73,11 @@
 }
 
 .profile {
+  background: none;
+  border: none;
+  border-radius: 0;
+  cursor: pointer;
+
   .dropdown-menu {
     padding: 0;
     width: 290px;
@@ -114,8 +125,70 @@
   }
 }
 
+.calendar-btn {
+  float: right !important;
+}
+
+.weekdays label[for^='btn-check-'] {
+  overflow: hidden;
+  flex-grow: 1;
+}
+
+.weekdays label[for^='btn-check-']:after {
+  content: attr(data-shortened);
+  display: none;
+}
+
 @media only screen and (max-width: 767px) {
   .main-content {
     padding-left: 0;
+  }
+
+  .calendar-btn {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    margin-left: $spacer;
+    margin-bottom: $spacer;
+    height: 45px;
+    width: 45px;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background: $primary;
+    color: $white;
+  }
+
+  .btn-check:checked + label[for^='btn-check-'] {
+    color: $success;
+
+    &:after {
+      color: $white;
+    }
+  }
+
+  .btn-check:not(:checked) + label[for^='btn-check-'] {
+    background: $white;
+    color: $white;
+
+    &:after {
+      color: $success;
+    }
+  }
+
+  .weekdays label[for^='btn-check-'] {
+    padding: 5px 3px;
+
+    &:after {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width:100%;
+      height:100%;
+      display: block;
+      padding: 5px 3px;
+    }
   }
 }

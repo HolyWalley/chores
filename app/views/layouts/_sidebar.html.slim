@@ -1,35 +1,35 @@
-nav#sidebarMenu.animate__animated.position-fixed.top-0.d-md-block.bg-light.sidebar.collapse.vh-100.overflow-scroll style="width: 290px; z-index: 3;"
-  .position-sticky
-    .profile.d-flex.flex-row.p-3 type="button" data-controller="profile"
-      div.rounded
-        img.rounded width="42" src="https://cdn4.iconfinder.com/data/icons/avatars-xmas-giveaway/128/batman_hero_avatar_comics-512.png"
-      .d-flex.flex-column.ms-3
-        span.fw-bolder.fs-6=@current_account.profile.username
-        span.fw-light style="font-size: .85rem;" Free Membership
-      .flex-fill
-      div.d-flex.align-items-center.justify-content-center
-        i.fas.fa-chevron-down
-      ul.dropdown-menu data-profile-target="dropdown"
-        li
-          = link_to profile_path, class: "dropdown-item" do
-            .dropdown-item__icon
-              i.far.fa-user
-            .dropdown-item__text
-              | Profile
-        li
-          a.dropdown-item
-            .dropdown-item__icon
-              i.fas.fa-cogs
-            .dropdown-item__text
-              | Settings
-        li
-          hr.dropdown-divider
-        li
-          = link_to :signout, class: "dropdown-item", method: :delete do
-            .dropdown-item__icon
-              i.fas.fa-sign-out-alt
-            .dropdown-item__text
-              | Sign out
+nav#sidebarMenu.animate__animated.position-fixed.top-0.d-md-block.bg-light.sidebar.collapse.vh-100 style="width: 290px; z-index: 3;"
+  .profile.d-flex.flex-row.p-3 data-controller="profile"
+    div.rounded
+      img.rounded width="42" src="https://cdn4.iconfinder.com/data/icons/avatars-xmas-giveaway/128/batman_hero_avatar_comics-512.png"
+    .d-flex.flex-column.ms-3
+      span.fw-bolder.fs-6=@current_account.profile.username
+      span.fw-light style="font-size: .85rem;" Free Membership
+    .flex-fill
+    div.d-flex.align-items-center.justify-content-center
+      i.fas.fa-chevron-down
+    ul.dropdown-menu data-profile-target="dropdown"
+      li
+        = link_to profile_path, class: "dropdown-item" do
+          .dropdown-item__icon
+            i.far.fa-user
+          .dropdown-item__text
+            | Profile
+      li
+        a.dropdown-item
+          .dropdown-item__icon
+            i.fas.fa-cogs
+          .dropdown-item__text
+            | Settings
+      li
+        hr.dropdown-divider
+      li
+        = link_to :signout, class: "dropdown-item", method: :delete do
+          .dropdown-item__icon
+            i.fas.fa-sign-out-alt
+          .dropdown-item__text
+            | Sign out
+  div.overflow-scroll.h-100 style="-webkit-overflow-scrolling: touch;"
     ul.nav.flex-column
       li.nav-item
         = link_to today_habits_path, class: "nav-link active", aria: { current: "page" } do
@@ -44,7 +44,4 @@ nav#sidebarMenu.animate__animated.position-fixed.top-0.d-md-block.bg-light.sideb
 
     = turbo_frame_tag "categories", class: "nav flex-column" do
       = render Category.all
-
-    h6.sidebar-heading.d-flex.justify-content-between.align-items-center.px-3.mt-4.mb-1.text-muted
-      small.text-uppercase Achievements
-
+    .py-4.m-3.mt-0

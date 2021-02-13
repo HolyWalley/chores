@@ -1,6 +1,5 @@
 = simple_form_for :session do |f|
-  = image_tag 'https://i.redd.it/c8lrbhym1ys41.png', width: 72
-  h1.h3.mb-3.fw-normal Please sign up
+  = image_tag 'https://i.redd.it/c8lrbhym1ys41.png', width: 72, class: "mb-4"
   = f.input :email, label: false, placeholder: 'Email', wrapper_html: { class: 'mb-3' }
   = f.input :password, label: false, placeholder: 'Password', wrapper_html: { class: 'mb-3' }
-  = f.button :submit, class: 'btn-primary btn-lg'
+  = f.button :submit, t("signin"), class: 'btn-primary btn-lg'
